@@ -49,7 +49,7 @@ services:
     ports:
       - "80:80"
     depends_on:
-      - app
+      - app_landing
     volumes:
       - ./docker/web/log:/var/log/nginx:rw
       - ./docker/web/config/nginx.conf:/opt/nginx-confs/default.conf.dist:ro
