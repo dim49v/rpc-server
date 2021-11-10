@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  app_landing:
+    build: 
+      context: .
+      target: app_landing
+      dockerfile: dev.Dockerfile
+      args:
+        PHP_VERSION_ARG: ${PHP_VERSION}
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./landing:/var/www/app:rw
+
+  app_activity:
+    build: 
+      context: .
+      target: app_activity
+      dockerfile: dev.Dockerfile
+      args:
+        PHP_VERSION_ARG: ${PHP_VERSION}
+    restart: unless-stopped
+    depends_on:
+      - db
+    env_file:
+      - .env
+    volumes:
+      - ./activity:/var/www/app:rw
+
+  db:
+    image: mysql:${MYSQL_VERSION}
+    restart: unless-stopped
+    ports:
+      - "${MYSQL_PORT:-3306}:3306"
+    env_file:
+      - .env
+    volumes:
+      - ./docker/db/log:/var/log/mysql:rw
+
+  web:
+    image: nginx:${NGINX_VERSION}
+    build:
+      context: .
+      target: web
+      dockerfile: dev.Dockerfile
+      args:
+        NGINX_VERSION_ARG: ${NGINX_VERSION}
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - app_landing
+    volumes:
+      - ./docker/web/log:/var/log/nginx:rw
+      - ./docker/web/config/nginx.conf:/opt/nginx-confs/default.conf.dist:ro

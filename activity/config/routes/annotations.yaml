@@ -1,0 +1,7 @@
+controllers:
+    prefix: "%api.prefix%"
+    resource: ../../src/Controller/
+    type: annotation
+    name_prefix: api_
+    defaults:
+        _format: json

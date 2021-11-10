@@ -1,0 +1,12 @@
+controllers:
+    resource: ../../src/Controller/
+    type: annotation
+    exclude:
+        - ../../src/Controller/Admin/
+
+
+admin_controllers:
+    prefix: "admin/"
+    resource: ../../src/Controller/Admin
+    type: annotation
+    name_prefix: admin_
