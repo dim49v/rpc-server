@@ -20,7 +20,7 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN apt-get update
-RUN apt-get install -y git zip unzip wget
+RUN apt-get install -y git zip unzip wget netcat
 RUN docker-php-ext-install pdo pdo_mysql
 RUN wget https://get.symfony.com/cli/installer -O - | bash
 ENV PATH="/root/.symfony/bin:$PATH"
