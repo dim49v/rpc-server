@@ -1,6 +1,6 @@
 {
-    "name": "dim49v/car-showroom",
-    "description": "Test work API",
+    "name": "dim49v/rpc-server-activity",
+    "description": "Test work",
     "type": "project",
     "license": "proprietary",
     "require": {

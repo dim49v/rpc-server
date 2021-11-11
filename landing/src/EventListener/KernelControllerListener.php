@@ -31,13 +31,14 @@ class KernelControllerListener
                 ],
                 'id' => 1,
             ];
-            $response = $this->client->request(
+            $request = $this->client->request(
                 'POST',
                 BaseController::JSON_RPC_URL,
                 [
                     'json' => [$query],
                 ]
             );
+            $this->client->stream([$request], 0);
         }
     }
 }

@@ -30,8 +30,6 @@ services:
   db:
     image: mysql:${MYSQL_VERSION}
     restart: unless-stopped
-    ports:
-      - "${MYSQL_PORT:-3306}:3306"
     env_file:
       - .env
     volumes:
