@@ -19,7 +19,8 @@ RUN set -ex \
 COPY ./docker/php/landing.docker-command.sh /bin/docker-command.sh
 RUN sed -i ':a;N;$!ba;s/\r//g' /bin/docker-command.sh \
     && chmod +x /bin/docker-command.sh
-RUN usermod -u 1000 www-data
+RUN mkdir -p /var/www/app/var \
+    && chown -R www-data:www-data /var/www/app/var 
 USER www-data
 WORKDIR /var/www/app
 CMD ["/bin/docker-command.sh"]
@@ -42,7 +43,8 @@ RUN set -ex \
 COPY ./docker/php/activity.docker-command.sh /bin/docker-command.sh
 RUN sed -i ':a;N;$!ba;s/\r//g' /bin/docker-command.sh \
     && chmod +x /bin/docker-command.sh
-RUN usermod -u 1000 www-data
+RUN mkdir -p /var/www/app/var \
+    && chown -R www-data:www-data /var/www/app/var 
 USER www-data
 WORKDIR /var/www/app
 CMD ["/bin/docker-command.sh"]
