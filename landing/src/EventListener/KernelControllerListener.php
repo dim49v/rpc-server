@@ -22,15 +22,13 @@ class KernelControllerListener
     {
         $controller = $event->getController();
         if (is_array($controller) && $controller[0] instanceof ListenControllerInterface) {
-            $query = [
-                'jsonrpc' => '2.0',
-                'method' => 'url_view',
-                'params' => [
-                    'url' => $event->getRequest()->getPathInfo(),
-                    'date' => (new DateTime())->format(DateTimeInterface::ISO8601),
-                ],
-                'id' => 1,
+            $query = BaseController::JSON_RPC_BODY;
+            $query['method'] = 'url_view';
+            $query['params'] = [
+                'url' => $event->getRequest()->getPathInfo(),
+                'date' => (new DateTime())->format(DateTimeInterface::ISO8601),
             ];
+
             $request = $this->client->request(
                 'POST',
                 BaseController::JSON_RPC_URL,

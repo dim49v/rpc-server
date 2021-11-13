@@ -44,15 +44,13 @@ class ActivityController extends AbstractController implements ListenControllerI
      */
     public function getList(): Response
     {
-        $query = [
-            'jsonrpc' => '2.0',
-            'method' => 'get_views_list',
-            'params' => [
-                'perPage' => $this->getPerPageParam(),
-                'page' => $this->getPageParam(),
-            ],
-            'id' => 1,
+        $query = BaseController::JSON_RPC_BODY;
+        $query['method'] = 'get_views_list';
+        $query['params'] = [
+            'perPage' => $this->getPerPageParam(),
+            'page' => $this->getPageParam(),
         ];
+
         $response = $this->client->request(
             'POST',
             BaseController::JSON_RPC_URL,

@@ -15,6 +15,12 @@ abstract class BaseController extends AbstractController implements ListenContro
     use ExceptionTrait;
 
     public const JSON_RPC_URL = 'http://app_activity/json-rpc';
+    public const JSON_RPC_BODY = [
+        'jsonrpc' => '2.0',
+        'method' => '',
+        'params' => [],
+        'id' => 1,
+    ];
 
     protected Request $request;
 

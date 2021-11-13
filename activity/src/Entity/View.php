@@ -14,20 +14,34 @@ class View
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    protected int $id;
+
+    /**
      * @ORM\Column(type="string", length=256, nullable=false)
      */
-    protected string $url = '';
+    protected string $url;
 
     /**
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="datetime", nullable=false)
      */
+    protected DateTime $date;
+
     protected int $viewsCount = 0;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    protected DateTime $lastView;
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function setId(int $id): View
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 
     public function getUrl(): string
     {
@@ -53,21 +67,14 @@ class View
         return $this;
     }
 
-    public function getLastView(): DateTime
+    public function getDate(): DateTime
     {
-        return $this->lastView;
+        return $this->date;
     }
 
-    public function setLastView(DateTime $lastView): View
+    public function setDate(DateTime $date): View
     {
-        $this->lastView = $lastView;
-
-        return $this;
-    }
-
-    public function increment(): View
-    {
-        ++$this->viewsCount;
+        $this->date = $date;
 
         return $this;
     }

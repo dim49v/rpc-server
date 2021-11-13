@@ -6,7 +6,7 @@
     <table>
         <tr><th>URL</th><th>Views count</th><th>Last view</th></tr>
         {% for item in data.items %}
-            <tr><td>{{ item.url }}</td><td>{{ item.viewsCount }}</td><td>{{ item.lastView|date("m/d/Y H:i:s") }}</td></tr>
+            <tr><td>{{ item.url }}</td><td>{{ item.viewsCount }}</td><td>{{ item.lastView|date("d/m/Y H:i:s") }}</td></tr>
         {% endfor %}
     </table>
     <br/>

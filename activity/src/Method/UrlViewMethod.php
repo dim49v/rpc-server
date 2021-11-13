@@ -32,17 +32,9 @@ class UrlViewMethod implements JsonRpcMethodInterface
             throw new JsonRpcException(JsonRpcInvalidParamsException::CODE, 'Invalid date format.');
         }
 
-        /** @var ?View $item */
-        $item = $this->entityManager->getRepository(View::class)->find($paramList['url']);
-        if (null !== $item) {
-            $item->increment()
-                ->setLastView($date);
-        } else {
-            $item = (new View())
-                ->setUrl($paramList['url'])
-                ->setViewsCount(1)
-                ->setLastView($date);
-        }
+        $item = (new View())
+            ->setUrl($paramList['url'])
+            ->setDate($date);
         try {
             $this->entityManager->persist($item);
             $this->entityManager->flush();

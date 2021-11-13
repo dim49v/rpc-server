@@ -34,7 +34,7 @@ class GetViewsListMethod implements JsonRpcMethodInterface
 
         /** @var ViewRepository $repository */
         $repository = $this->entityManager->getRepository(View::class);
-        $items = $repository->findPaginated($orderBy, $perPage, $offset);
+        $items = $repository->getItemsGroupedByUrl($orderBy, $perPage, $offset);
         $data = [
             'perPage' => $perPage,
             'page' => $page,
