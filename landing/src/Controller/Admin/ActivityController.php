@@ -60,7 +60,7 @@ class ActivityController extends AbstractController implements ListenControllerI
         );
         $data = json_decode($response->getContent(), true);
         $result = json_decode($data[0]['result'], true);
-        print_r($response->getContent());
+
         if (!$this->get('twig')->getLoader()->exists(self::ACTIVITY_TEMPLATE)) {
             throw new RuntimeException('Template not found');
         }
